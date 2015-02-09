@@ -23,10 +23,10 @@ return array(
         ),
 
         'factories' => array(
-            'BnpRest\Mvc\HttpExceptionListener' => 'BnpRest\Mvc\HttpExceptionListener',
-            'BnpRest\Options\ModuleOptions' => 'BnpRest\Options\ModuleOptions',
-            'BnpRest\View\Renderer\ResourceRenderer' => 'BnpRest\View\Renderer\ResourceRenderer',
-            'BnpRest\View\Strategy\ResourceStrategy' => 'BnpRest\View\Strategy\ResourceStrategy'
+            'BnpRest\Mvc\HttpExceptionListener' => 'BnpRest\Factory\HttpExceptionListenerFactory',
+            'BnpRest\Options\ModuleOptions' => 'BnpRest\Factory\ModuleOptionsFactory',
+            'BnpRest\View\Renderer\ResourceRenderer' => 'BnpRest\Factory\ResourceRendererFactory',
+            'BnpRest\View\Strategy\ResourceStrategy' => 'BnpRest\Factory\ResourceStrategyFactory'
         )
     ),
 
