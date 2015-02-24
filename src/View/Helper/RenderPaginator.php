@@ -38,9 +38,10 @@ class RenderPaginator extends AbstractHelper
     public function __invoke(Paginator $paginator)
     {
         return array(
-            'limit'  => $paginator->getItemCountPerPage(),
-            'offset' => ($paginator->getCurrentPageNumber() - 1) * $paginator->getItemCountPerPage(),
-            'total'  => $paginator->getTotalItemCount()
+            'total_item_count' => $paginator->getTotalItemCount(),
+            'item_count_per_page' => $paginator->getItemCountPerPage(),
+            'current_page_number' => $paginator->getCurrentPageNumber(),
+            'current_item_count' => $paginator->getCurrentItemCount(),
         );
     }
 }
