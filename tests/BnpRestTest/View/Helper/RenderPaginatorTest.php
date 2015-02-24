@@ -42,9 +42,10 @@ class RenderPaginatorTest extends PHPUnit_Framework_TestCase
         $result = $helper($paginator);
 
         $expected = array(
-            'limit'  => 3,
-            'offset' => 3,
-            'total'  => 6
+            'total_item_count'  => 6,
+            'item_count_per_page' => 3,
+            'current_page_number'  => 2,
+            'current_item_count' => 3,
         );
 
         $this->assertEquals($expected, $result);
