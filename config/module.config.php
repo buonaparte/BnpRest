@@ -32,8 +32,8 @@ return array(
 
     'controller_plugins' => array(
         'factories' => array(
-            'BnpRest\Mvc\Controller\Plugin\ValidateIncomingData' => 'BnpRest\Mvc\Controller\Plugin\ValidateIncomingData',
-            'BnpRest\Mvc\Controller\Plugin\HydrateObject' => 'BnpRest\Mvc\Controller\Plugin\HydrateObject'
+            'BnpRest\Mvc\Controller\Plugin\ValidateIncomingData' => 'BnpRest\Factory\ValidateIncomingDataPluginFactory',
+            'BnpRest\Mvc\Controller\Plugin\HydrateObject' => 'BnpRest\Factory\HydrateObjectPluginFactory'
         ),
 
         'aliases' => array(

@@ -29,12 +29,33 @@ class ModuleOptions extends AbstractOptions
     /**
      * @var array
      */
+    private $restRoutePrefixes = array();
+
+    /**
+     * @var array
+     */
     private $exceptionMap = array();
 
     /**
      * @var bool
      */
     private $registerHttpMethodOverrideListener = false;
+
+    /**
+     * @return array
+     */
+    public function getRestRoutePrefixes()
+    {
+        return $this->restRoutePrefixes;
+    }
+
+    /**
+     * @param array $restRoutePrefixes
+     */
+    public function setRestRoutePrefixes(array $restRoutePrefixes)
+    {
+        $this->restRoutePrefixes = $restRoutePrefixes;
+    }
 
     /**
      * @param array $exceptionMap

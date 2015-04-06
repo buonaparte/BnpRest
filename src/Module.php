@@ -19,6 +19,7 @@
 namespace BnpRest;
 
 use Zend\EventManager\EventInterface;
+use Zend\Http\Request;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use BnpRest\Options\ModuleOptions;
@@ -43,11 +44,23 @@ class Module implements BootstrapListenerInterface, ConfigProviderInterface
         /* @var ModuleOptions $moduleOptions */
         $moduleOptions = $serviceManager->get('BnpRest\Options\ModuleOptions');
 
-        $eventManager->attachAggregate($serviceManager->get('BnpRest\Mvc\HttpExceptionListener'));
-        $eventManager->attachAggregate($serviceManager->get('BnpRest\Mvc\ResourceResponseListener'));
+        $request = $application->getRequest();
+        if (! $request instanceof Request || ! $moduleOptions->getRestRoutePrefixes()) {
+            return;
+        }
 
-        if ($moduleOptions->getRegisterHttpMethodOverrideListener()) {
-            $eventManager->attachAggregate($serviceManager->get('BnpRest\Mvc\HttpMethodOverrideListener'));
+        $requestUri = $request->getUriString();
+        foreach ($moduleOptions->getRestRoutePrefixes() as $routePrefix) {
+            if (false !== strstr($requestUri, $routePrefix)) {
+                $eventManager->attachAggregate($serviceManager->get('BnpRest\Mvc\HttpExceptionListener'));
+                $eventManager->attachAggregate($serviceManager->get('BnpRest\Mvc\ResourceResponseListener'));
+
+                if ($moduleOptions->getRegisterHttpMethodOverrideListener()) {
+                    $eventManager->attachAggregate($serviceManager->get('BnpRest\Mvc\HttpMethodOverrideListener'));
+                }
+
+                return;
+            }
         }
     }
 
